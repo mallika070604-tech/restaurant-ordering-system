@@ -35,7 +35,7 @@ actions={
         </h2>
 
         <p className="mt-2 text-sm text-slate-400">
-          Scan QR code, browse menu, add items to cart and place orders.
+        Scan the QR code and place your order
         </p>
 
         <p className="mt-4 text-sm text-brand-400">
@@ -43,7 +43,7 @@ actions={
         </p>
       </Link>
 
-      <div
+      {/* <div
         onClick={() => navigate('/staff')}
         className="card group p-6 cursor-pointer transition hover:border-brand-500/40"
       >
@@ -60,7 +60,7 @@ actions={
         <p className="mt-4 text-sm text-brand-400">
           Staff Login →
         </p>
-      </div>
+      </div> */}
 
     </div>
 
