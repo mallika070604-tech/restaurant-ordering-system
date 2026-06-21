@@ -7,84 +7,139 @@ import { generateTableQR } from './services/qrService.js';
 const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
 
 const menuItems = [
-  {
-    name: 'Crispy Spring Rolls',
-    description: 'Vegetable spring rolls with sweet chili dip',
-    price: 180,
-    category: 'starters',
-    prepTimeMinutes: 10,
-  },
-  {
-    name: 'Chicken Tikka',
-    description: 'Marinated chicken grilled in tandoor',
-    price: 320,
-    category: 'starters',
-    prepTimeMinutes: 15,
-  },
-  {
-    name: 'Paneer Butter Masala',
-    description: 'Cottage cheese in rich tomato gravy',
-    price: 280,
-    category: 'mains',
-    prepTimeMinutes: 20,
-  },
-  {
-    name: 'Butter Chicken',
-    description: 'Classic creamy tomato-based curry',
-    price: 350,
-    category: 'mains',
-    prepTimeMinutes: 25,
-  },
-  {
-    name: 'Veg Biryani',
-    description: 'Fragrant basmati rice with mixed vegetables',
-    price: 260,
-    category: 'mains',
-    prepTimeMinutes: 20,
-  },
-  {
-    name: 'Masala Dosa',
-    description: 'Crispy crepe with spiced potato filling',
-    price: 150,
-    category: 'mains',
-    prepTimeMinutes: 15,
-  },
-  {
-    name: 'Gulab Jamun',
-    description: 'Warm milk dumplings in sugar syrup',
-    price: 120,
-    category: 'desserts',
-    prepTimeMinutes: 5,
-  },
-  {
-    name: 'Chocolate Brownie',
-    description: 'Served with vanilla ice cream',
-    price: 180,
-    category: 'desserts',
-    prepTimeMinutes: 5,
-  },
-  {
-    name: 'Fresh Lime Soda',
-    description: 'Sweet or salted',
-    price: 80,
-    category: 'beverages',
-    prepTimeMinutes: 3,
-  },
-  {
-    name: 'Mango Lassi',
-    description: 'Thick yogurt drink with mango pulp',
-    price: 100,
-    category: 'beverages',
-    prepTimeMinutes: 5,
-  },
-  {
-    name: "Chef's Special Thali",
-    description: 'Complete meal with roti, rice, dal, and dessert',
-    price: 450,
-    category: 'specials',
-    prepTimeMinutes: 30,
-  },
+
+// STARTERS
+{
+name: "Chicken 65",
+description: "Spicy South Indian Chicken Starter",
+price: 220,
+category: "starters",
+prepTimeMinutes: 15,
+image: "/images/chicken65.jpg"
+},
+{
+name: "Chilli Chicken",
+description: "Hot & Spicy Chicken",
+price: 240,
+category: "starters",
+prepTimeMinutes: 15,
+image: "/images/chilli-chicken.jpg"
+},
+{
+name: "Paneer Tikka",
+description: "Grilled Paneer Cubes",
+price: 210,
+category: "starters",
+prepTimeMinutes: 15,
+image: "/images/paneer-tikka.jpg"
+},
+
+// BIRYANIS
+{
+name: "Chicken Biryani",
+description: "Hyderabadi Dum Biryani",
+price: 250,
+category: "mains",
+prepTimeMinutes: 20,
+image: "/images/chicken-biryani.jpg"
+},
+{
+name: "Chicken Fry Piece Biryani",
+description: "Special Fry Piece Biryani",
+price: 280,
+category: "mains",
+prepTimeMinutes: 25,
+image: "/images/chicken-fry-piece-biryani.jpg"
+},
+{
+name: "Mutton Biryani",
+description: "Traditional Mutton Biryani",
+price: 350,
+category: "mains",
+prepTimeMinutes: 25,
+image: "/images/mutton-biryani.jpg"
+},
+{
+name: "Veg Biryani",
+description: "Vegetable Dum Biryani",
+price: 180,
+category: "mains",
+prepTimeMinutes: 15,
+image: "/images/veg-biryani.jpg"
+},
+
+// FRIED RICE
+{
+name: "Chicken Fried Rice",
+description: "Chinese Style Fried Rice",
+price: 220,
+category: "mains",
+prepTimeMinutes: 15,
+image: "/images/chicken-fried-rice.jpg"
+},
+{
+name: "Veg Fried Rice",
+description: "Vegetable Fried Rice",
+price: 180,
+category: "mains",
+prepTimeMinutes: 15,
+image: "/images/veg-fried-rice.jpg"
+},
+
+// BEVERAGES
+{
+name: "Coke",
+description: "Chilled Coca Cola",
+price: 40,
+category: "beverages",
+prepTimeMinutes: 2,
+image: "/images/coke.jpg"
+},
+{
+name: "Sprite",
+description: "Refreshing Sprite",
+price: 40,
+category: "beverages",
+prepTimeMinutes: 2,
+image: "/images/sprite.jpg"
+},
+{
+name: "Fresh Lime Soda",
+description: "Fresh Lime Drink",
+price: 60,
+category: "beverages",
+prepTimeMinutes: 5,
+image: "/images/fresh-lime-soda.jpg"
+},
+
+// DESSERTS
+{
+name: "Gulab Jamun",
+description: "Indian Sweet Dessert",
+price: 80,
+category: "desserts",
+prepTimeMinutes: 5,
+image: "/images/gulab-jamun.jpg"
+},
+{
+name: "Chocolate Brownie",
+description: "Hot Chocolate Brownie",
+price: 120,
+category: "desserts",
+prepTimeMinutes: 5,
+image: "/images/chocolate-brownie.jpg"
+},
+{
+name: "Vanilla Ice Cream",
+description: "Classic Vanilla Ice Cream",
+price: 100,
+category: "desserts",
+prepTimeMinutes: 2,
+image: "/images/vanilla-ice-cream.jpg"
+}
+
 ];
+
 
 const seed = async () => {
   await connectDB();

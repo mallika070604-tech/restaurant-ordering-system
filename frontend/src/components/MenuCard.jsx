@@ -3,11 +3,16 @@ import { formatCurrency } from '../utils/format';
 export default function MenuCard({ item, onAdd }) {
   return (
     <article className="card flex flex-col overflow-hidden transition hover:border-brand-500/30">
-      <div className="flex h-28 items-center justify-center bg-gradient-to-br from-brand-600/20 to-slate-800">
-        <span className="text-4xl opacity-80">
-          {item.category === 'beverages' ? '🥤' : item.category === 'desserts' ? '🍰' : '🍽️'}
-        </span>
-      </div>
+      <div className="h-40 overflow-hidden">
+  <img
+    src={item.image || '/images/default-food.jpg'}
+    alt={item.name}
+    className="h-full w-full object-cover"
+    onError={(e) => {
+      e.target.src = '/images/default-food.jpg';
+    }}
+  />
+</div>
       <div className="flex flex-1 flex-col p-4">
         <div className="mb-2 flex items-start justify-between gap-2">
           <h3 className="font-semibold text-white">{item.name}</h3>
