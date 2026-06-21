@@ -10,9 +10,15 @@ export default function OrderCard({ order, onStatusChange, showActions = false }
             Table {order.tableNumber} · {formatDateTime(order.createdAt)}
           </p>
         </div>
-        <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${STATUS_COLORS[order.status]}`}>
-          {order.status}
-        </span>
+       <span
+  className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${STATUS_COLORS[order.status]}`}
+>
+  {order.status === 'pending' && '🟡 Pending'}
+  {order.status === 'confirmed' && '🟠 Confirmed'}
+  {order.status === 'preparing' && '👨‍🍳 Preparing'}
+  {order.status === 'ready' && '✅ Ready To Serve'}
+  {order.status === 'served' && '🍽️ Served'}
+</span>
       </div>
 
       <ul className="mb-3 space-y-1 text-sm">
@@ -26,7 +32,19 @@ export default function OrderCard({ order, onStatusChange, showActions = false }
           </li>
         ))}
       </ul>
+       <div className="mb-3 rounded-lg bg-slate-800 p-3">
+  <p className="text-xs text-slate-400">
+    Estimated Time
+  </p>
 
+  <p className="font-bold text-brand-400">
+    {order.status === 'pending' && '15 mins'}
+    {order.status === 'confirmed' && '15 mins'}
+    {order.status === 'preparing' && '10 mins'}
+    {order.status === 'ready' && 'Ready for pickup'}
+    {order.status === 'served' && 'Completed'}
+  </p>
+</div>
       <div className="flex flex-wrap items-center justify-between gap-2 border-t border-white/10 pt-3">
         <span className="font-bold text-brand-400">{formatCurrency(order.total)}</span>
         <span className="text-xs uppercase text-slate-500">{order.paymentStatus}</span>
