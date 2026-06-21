@@ -14,6 +14,7 @@ import menuRoutes from './routes/menu.js';
 import orderRoutes from './routes/orders.js';
 import paymentRoutes from './routes/payments.js';
 import analyticsRoutes from './routes/analytics.js';
+import restaurantRoutes from './routes/restaurant.js';
 import waiterRoutes from './routes/waiter.js';
 
 const app = express();
@@ -65,6 +66,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/restaurant', restaurantRoutes);
 app.use('/api/waiter', waiterRoutes);
 app.use(errorHandler);
 
