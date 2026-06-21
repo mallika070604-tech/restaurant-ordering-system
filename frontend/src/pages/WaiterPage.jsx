@@ -4,6 +4,14 @@ import Layout from '../components/Layout';
 export default function WaiterPage() {
   const [calls, setCalls] = useState([]);
 
+  const playSound = () => {
+    const audio = new Audio(
+      'https://actions.google.com/sounds/v1/alarms/beep_short.ogg'
+    );
+
+    audio.play().catch(() => {});
+  };
+
   const loadCalls = async () => {
     try {
       const response = await fetch(
@@ -11,6 +19,12 @@ export default function WaiterPage() {
       );
 
       const data = await response.json();
+
+      // New call vachinappudu sound play cheyyi
+      if (data.length > calls.length) {
+        playSound();
+      }
+
       setCalls(data);
     } catch (err) {
       console.error(err);
@@ -18,20 +32,26 @@ export default function WaiterPage() {
   };
 
   const resolveCall = async (id) => {
-    await fetch(
-      `${import.meta.env.VITE_API_URL || ''}/waiter/${id}`,
-      {
-        method: 'PATCH',
-      }
-    );
+    try {
+      await fetch(
+        `${import.meta.env.VITE_API_URL || ''}/waiter/${id}`,
+        {
+          method: 'PATCH',
+        }
+      );
 
-    loadCalls();
+      loadCalls();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
     loadCalls();
 
-    const interval = setInterval(loadCalls, 3000);
+    const interval = setInterval(() => {
+      loadCalls();
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -43,7 +63,7 @@ export default function WaiterPage() {
     >
       <div className="space-y-4">
         {calls.length === 0 ? (
-          <div className="card p-6">
+          <div className="card p-6 text-center">
             No waiter calls
           </div>
         ) : (
