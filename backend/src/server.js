@@ -7,12 +7,14 @@ import connectDB from './config/db.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { ensureInvoicesDir } from './services/invoiceService.js';
 
+
 import authRoutes from './routes/auth.js';
 import tableRoutes from './routes/tables.js';
 import menuRoutes from './routes/menu.js';
 import orderRoutes from './routes/orders.js';
 import paymentRoutes from './routes/payments.js';
 import analyticsRoutes from './routes/analytics.js';
+import waiterRoutes from './routes/waiter.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -63,7 +65,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/analytics', analyticsRoutes);
-
+app.use('/api/waiter', waiterRoutes);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
