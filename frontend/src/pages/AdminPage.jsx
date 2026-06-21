@@ -2,6 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { setAdminPin, auth, menu, tables, analytics } from '../api/client';
 import { formatCurrency, formatDateTime, CATEGORY_LABELS } from '../utils/format';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 const emptyMenuForm = {
   name: '',
@@ -197,6 +205,32 @@ export default function AdminPage() {
               </div>
             ))}
           </div>
+          <div className="card p-5">
+  <h3 className="mb-4 font-display text-lg font-bold">
+    Revenue Trend
+  </h3>
+
+  <div style={{ width: '100%', height: 300 }}>
+    <ResponsiveContainer>
+      <LineChart data={revenue.revenueByDay}>
+        <CartesianGrid strokeDasharray="3 3" />
+
+        <XAxis dataKey="_id" />
+
+        <YAxis />
+
+        <Tooltip />
+
+        <Line
+          type="monotone"
+          dataKey="revenue"
+          stroke="#22c55e"
+          strokeWidth={3}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  </div>
+</div>
 
           <div className="grid gap-6 lg:grid-cols-2">
             <div className="card p-5">
