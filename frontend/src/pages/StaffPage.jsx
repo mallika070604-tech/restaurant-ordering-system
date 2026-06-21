@@ -1,33 +1,54 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Layout from '../components/Layout';
 
 export default function StaffPage() {
-  const navigate = useNavigate();
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950">
-      <div className="card p-8 w-full max-w-md text-center">
-        <h1 className="text-3xl font-bold mb-6">Staff Portal</h1>
+    <Layout
+      title="Staff Portal"
+      subtitle="Restaurant Management Dashboard"
+    >
+      <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
 
-        <button
-          onClick={() => navigate('/kitchen')}
-          className="btn-primary w-full mb-4"
+        <Link
+          to="/kitchen"
+          className="card p-6 text-center transition hover:border-brand-500/40"
         >
-          👨‍🍳 Kitchen Dashboard
-        </button>
+          <div className="mb-3 text-4xl">👨‍🍳</div>
+          <h2 className="font-display text-xl font-bold">
+            Kitchen
+          </h2>
+          <p className="mt-2 text-sm text-slate-400">
+            Manage incoming orders
+          </p>
+        </Link>
 
-        <button
-          onClick={() => navigate('/admin')}
-          className="btn-primary w-full"
+        <Link
+          to="/admin"
+          className="card p-6 text-center transition hover:border-brand-500/40"
         >
-          👨‍💼 Admin Dashboard
-        </button>
-        <button
-  onClick={() => navigate('/waiter')}
-  className="btn-primary w-full"
->
-  🍽 Waiter Dashboard
-</button>
+          <div className="mb-3 text-4xl">📊</div>
+          <h2 className="font-display text-xl font-bold">
+            Admin
+          </h2>
+          <p className="mt-2 text-sm text-slate-400">
+            Revenue & menu management
+          </p>
+        </Link>
+
+        <Link
+          to="/waiter"
+          className="card p-6 text-center transition hover:border-brand-500/40"
+        >
+          <div className="mb-3 text-4xl">🔔</div>
+          <h2 className="font-display text-xl font-bold">
+            Waiter
+          </h2>
+          <p className="mt-2 text-sm text-slate-400">
+            Customer assistance requests
+          </p>
+        </Link>
+
       </div>
-    </div>
+    </Layout>
   );
 }
