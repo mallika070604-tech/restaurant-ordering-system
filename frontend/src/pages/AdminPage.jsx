@@ -9,6 +9,7 @@ const emptyMenuForm = {
   price: '',
   category: 'mains',
   prepTimeMinutes: 15,
+  image: '',
   isAvailable: true,
 };
 
@@ -78,17 +79,18 @@ export default function AdminPage() {
   };
 
   const handleEditMenu = (item) => {
-    setEditingId(item._id);
-    setMenuForm({
-      name: item.name,
-      description: item.description,
-      price: item.price,
-      category: item.category,
-      prepTimeMinutes: item.prepTimeMinutes,
-      isAvailable: item.isAvailable,
-    });
-  };
+  setEditingId(item._id);
 
+  setMenuForm({
+    name: item.name,
+    description: item.description,
+    price: item.price,
+    category: item.category,
+    prepTimeMinutes: item.prepTimeMinutes,
+    image: item.image || '',
+    isAvailable: item.isAvailable,
+  });
+};
   const handleDeleteMenu = async (id) => {
     if (!confirm('Delete this menu item?')) return;
     await menu.remove(id);
@@ -301,6 +303,15 @@ export default function AdminPage() {
                 onChange={(e) => setMenuForm({ ...menuForm, price: e.target.value })}
                 required
               />
+              <input
+  className="input"
+  type="text"
+  placeholder="Image URL"
+  value={menuForm.image}
+  onChange={(e) =>
+    setMenuForm({ ...menuForm, image: e.target.value })
+  }
+/>
               <select
                 className="input"
                 value={menuForm.category}
@@ -319,6 +330,7 @@ export default function AdminPage() {
                 value={menuForm.prepTimeMinutes}
                 onChange={(e) => setMenuForm({ ...menuForm, prepTimeMinutes: e.target.value })}
               />
+             
             </div>
             <div className="mt-4 flex gap-2">
               <button type="submit" className="btn-primary flex-1">

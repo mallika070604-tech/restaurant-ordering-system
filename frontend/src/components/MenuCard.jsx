@@ -5,11 +5,11 @@ export default function MenuCard({ item, onAdd }) {
     <article className="card flex flex-col overflow-hidden transition hover:border-brand-500/30">
       <div className="h-40 overflow-hidden">
   <img
-    src={item.image || '/images/default-food.jpg'}
+ src={item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c'}
     alt={item.name}
     className="h-full w-full object-cover"
     onError={(e) => {
-      e.target.src = '/images/default-food.jpg';
+    e.target.src ='https://images.unsplash.com/photo-1546069901-ba9599a7e63c';
     }}
   />
 </div>
