@@ -4,6 +4,7 @@ import OrderPage from './pages/OrderPage';
 import KitchenPage from './pages/KitchenPage';
 import AdminPage from './pages/AdminPage';
 import StaffPage from './pages/StaffPage';
+import WaiterPage from './pages/WaiterPage';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/kitchen" element={<KitchenPage />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/staff" element={<StaffPage />} />
+        <Route path="/waiter" element={<WaiterPage />} />
       </Routes>
     </BrowserRouter>
   );

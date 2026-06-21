@@ -21,6 +21,12 @@ export default function StaffPage() {
         >
           👨‍💼 Admin Dashboard
         </button>
+        <button
+  onClick={() => navigate('/waiter')}
+  className="btn-primary w-full"
+>
+  🍽 Waiter Dashboard
+</button>
       </div>
     </div>
   );
