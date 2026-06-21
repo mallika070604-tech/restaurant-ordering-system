@@ -11,6 +11,7 @@ export default function KitchenPage() {
   const [loading, setLoading] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [loginError, setLoginError] = useState('');
+  const [waiterCalls, setWaiterCalls] = useState([]);
 
   useEffect(() => {
     const stored = sessionStorage.getItem('staffPin');
@@ -27,10 +28,25 @@ export default function KitchenPage() {
       setLoading(false);
     }
   }, []);
+  const loadWaiterCalls = async () => {
+  try {
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL || ''}/api/waiter`
+    );
 
-  useEffect(() => {
-    if (authenticated) loadOrders();
-  }, [authenticated, loadOrders]);
+    const data = await res.json();
+    setWaiterCalls(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+ useEffect(() => {
+  if (authenticated) {
+    loadOrders();
+    loadWaiterCalls();
+  }
+}, [authenticated, loadOrders]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -97,6 +113,18 @@ export default function KitchenPage() {
       alert(err.response?.data?.error || 'Failed to update status');
     }
   };
+  const resolveWaiterCall = async (id) => {
+  await fetch(
+    `${import.meta.env.VITE_API_URL || ''}/api/waiter/${id}`,
+    {
+      method: 'PATCH',
+    }
+  );
+
+  setWaiterCalls((prev) =>
+    prev.filter((call) => call._id !== id)
+  );
+};
 
   const columns = {
     pending: activeOrders.filter((o) => ['pending', 'confirmed'].includes(o.status)),
@@ -140,6 +168,31 @@ export default function KitchenPage() {
         </label>
       }
     >
+      {waiterCalls.length > 0 && (
+  <div className="mb-6 card p-4">
+    <h2 className="mb-3 text-xl font-bold">
+      🔔 Waiter Calls
+    </h2>
+
+    {waiterCalls.map((call) => (
+      <div
+        key={call._id}
+        className="mb-2 flex items-center justify-between rounded-lg bg-slate-800 p-3"
+      >
+        <span>
+          Table {call.tableNumber} called a waiter
+        </span>
+
+        <button
+          onClick={() => resolveWaiterCall(call._id)}
+          className="btn-primary"
+        >
+          Resolve
+        </button>
+      </div>
+    ))}
+  </div>
+)}
       {loading ? (
         <p className="text-center text-slate-400">Loading orders...</p>
       ) : (
