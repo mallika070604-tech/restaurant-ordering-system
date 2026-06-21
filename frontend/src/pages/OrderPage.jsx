@@ -20,6 +20,26 @@ function OrderContent() {
   const [pendingOrder, setPendingOrder] = useState(null);
   const [error, setError] = useState('');
   const { addItem, clearCart, items, customerNotes } = useCart();
+  const handleCallWaiter = async () => {
+  try {
+    await fetch(
+      `${import.meta.env.VITE_API_URL || ''}/api/waiter`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tableNumber: Number(tableNumber),
+        }),
+      }
+    );
+
+    alert('Waiter has been called');
+  } catch {
+    alert('Failed to call waiter');
+  }
+};
 
   const loadData = useCallback(async () => {
     try {
@@ -151,6 +171,12 @@ function OrderContent() {
 
         <div className="space-y-6">
           <CartPanel onCheckout={handleCheckout} loading={checkoutLoading} />
+          <button
+  onClick={handleCallWaiter}
+  className="btn-primary w-full"
+>
+  🔔 Call Waiter
+</button>
 
           {tableOrders.length > 0 && (
             <div>
