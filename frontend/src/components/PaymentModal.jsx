@@ -83,9 +83,7 @@ export default function PaymentModal({ order, onClose, onSuccess }) {
           <button type="button" className="btn-secondary w-full py-3" onClick={handleCash} disabled={loading}>
             Pay Cash at Counter
           </button>
-          <button type="button" className="w-full py-2 text-sm text-slate-400 hover:text-white" onClick={onClose}>
-            Pay later
-          </button>
+          
         </div>
       </div>
     </div>
