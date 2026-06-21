@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
-import Navbar from '../components/Navbar';
+
 
 export default function HomePage() {
 const navigate = useNavigate();
@@ -9,8 +9,17 @@ return (
 <Layout
 title="Restaurant Ordering System"
 subtitle="Scan QR, Order Food & Manage Restaurant"
-actions={<Navbar />}
-> <div className="max-w-4xl mx-auto">
+actions={
+  <Link
+    to="/staff"
+    className="text-sm text-slate-400 hover:text-white"
+  >
+    Staff Login
+  </Link>
+}
+>
+  
+   <div className="max-w-4xl mx-auto">
 
 ```
     <div className="grid gap-6 md:grid-cols-2">
