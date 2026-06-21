@@ -66,7 +66,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/analytics', analyticsRoutes);
-app.use('/restaurant', restaurantRoutes);
+app.use('/api/restaurant', restaurantRoutes);
 app.use('/api/waiter', waiterRoutes);
 app.use(errorHandler);
 
