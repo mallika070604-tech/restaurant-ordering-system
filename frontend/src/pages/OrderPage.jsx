@@ -23,7 +23,7 @@ function OrderContent() {
   const handleCallWaiter = async () => {
   try {
     await fetch(
-      `${import.meta.env.VITE_API_URL || ''}/api/waiter`,
+      `${import.meta.env.VITE_API_URL || ''}/waiter`,
       {
         method: 'POST',
         headers: {
