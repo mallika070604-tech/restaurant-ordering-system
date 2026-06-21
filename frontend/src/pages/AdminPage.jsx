@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
-import Layout from '../components/Layout';
-import { setAdminPin, auth, menu, tables, analytics } from '../api/client';
-import { formatCurrency, formatDateTime, CATEGORY_LABELS } from '../utils/format';
 import {
-  BarChart,
-  Bar,
+  ResponsiveContainer,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer,
+  CartesianGrid,
 } from 'recharts';
+import Layout from '../components/Layout';
+import { setAdminPin, auth, menu, tables, analytics } from '../api/client';
+import { formatCurrency, formatDateTime, CATEGORY_LABELS } from '../utils/format';
+
 
 const emptyMenuForm = {
   name: '',
